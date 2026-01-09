@@ -13,7 +13,8 @@ The goal is to eliminate direct internet exposure while maintaining secure admin
 ## 🧱 Step 1: Create Custom VPC
 A custom VPC was created with a private CIDR range to isolate the resources.
 
-![VPC Created](screenshots/vpc.png)
+![VPC Created](screenshots/vpc.PNG)
+
 
 ---
 
