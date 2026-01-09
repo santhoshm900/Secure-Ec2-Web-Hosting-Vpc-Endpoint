@@ -21,21 +21,22 @@ A custom VPC was created with a private CIDR range to isolate the resources.
 ## 🧱 Step 2: Create Private Subnet
 A private subnet was created inside the VPC to host the EC2 instance securely.
 
-![Private Subnet](screenshots/subnet.png)
+![Subnet Created](screenshots/subnet.PNG)
 
 ---
 
 ## 🌐 Step 3: Attach Internet Gateway (Initial Setup)
 An Internet Gateway was attached to the VPC to allow internet access **only during the initial configuration phase**.
 
-![Internet Gateway](screenshots/igw.png)
+![Internet Gateway Attached](screenshots/IGW.PNG)
+
 
 ---
 
 ## 🛣️ Step 4: Configure Route Table
 The route table was updated with a default route (`0.0.0.0/0`) pointing to the Internet Gateway.
 
-![Route Table](screenshots/route-table.png)
+![Route Table with IGW](screenshots/Route-table-with-route.PNG)
 
 ---
 
@@ -46,7 +47,8 @@ An EC2 instance was launched inside the private subnet.
 - OS: Ubuntu  
 - Auto-assign Public IP: Enabled (temporary)
 
-![EC2 Instance](screenshots/ec2-instance.png)
+![EC2 Instance](screenshots/ec2-instance.PNG)
+
 
 ---
 
