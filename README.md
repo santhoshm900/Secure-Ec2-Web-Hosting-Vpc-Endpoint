@@ -55,7 +55,7 @@ An EC2 instance was launched inside the private subnet.
 ## 🔧 Step 6: Install NGINX Web Server
 NGINX was installed on the EC2 instance and verified.
 
-```bash
+
 sudo apt update
 
 ## 🌍 Step 7: Verify Website Using Public IP (Initial Phase)
@@ -71,7 +71,7 @@ After installing NGINX, the website was accessed using the EC2 public IP to veri
 ## 📝 Step 8: Upload Custom HTML Page
 The default NGINX page was replaced with a custom BMW Car Showroom static HTML page.
 
-```bash
+
 cd /var/www/html
 sudo nano index.html
 
