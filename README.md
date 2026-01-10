@@ -1,121 +1,134 @@
-# Secure-Ec2-Web-Hosting-Vpc-Endpoint
-Deployed an NGINX web server on EC2, initially configured with a public IP and later secured by removing public access and enabling private connectivity using a VPC Endpoint.
+🔐 Secure EC2 Web Hosting Using VPC Endpoint
 
-# Secure EC2 Web Hosting Using VPC Endpoint
+This project demonstrates how to securely host a web application on an EC2 instance by initially using a public IP for setup and later eliminating internet exposure by removing the public IP and enabling private access using a VPC Endpoint.
 
-## 📌 Project Overview
-This project demonstrates how to securely host a web application on an Amazon EC2 instance by initially using a public IP for setup and later removing the public IP to ensure private access using a VPC Endpoint.
+Built on Amazon Web Services, this architecture follows security best practices by restricting direct internet access while maintaining secure administrative connectivity.
 
-The goal is to eliminate direct internet exposure while maintaining secure administrative access.
+📌 Project Objective
 
----
+Deploy NGINX on EC2
 
-## 🧱 Step 1: Create Custom VPC
-A custom VPC was created with a private CIDR range to isolate the resources.
+Verify application using public IP (initial phase)
 
-![VPC Created](screenshots/vpc.PNG)
+Remove all public internet exposure
 
+Access EC2 securely using EC2 Instance Connect VPC Endpoint
 
----
+Ensure the web server runs only inside private networking
 
-## 🧱 Step 2: Create Private Subnet
-A private subnet was created inside the VPC to host the EC2 instance securely.
+🧱 Step 1: Create Custom VPC
 
-![Subnet Created](screenshots/subnet.PNG)
+Created a custom VPC with a private CIDR range
 
----
+Used to isolate all resources
 
-## 🌐 Step 3: Attach Internet Gateway (Initial Setup)
-An Internet Gateway was attached to the VPC to allow internet access **only during the initial configuration phase**.
+📸 screenshots/vpc.PNG
 
-![Internet Gateway Attached](screenshots/IGW.PNG)
+🧱 Step 2: Create Private Subnet
 
+Created a private subnet inside the VPC
 
----
+EC2 instance launched in this subnet
 
-## 🛣️ Step 4: Configure Route Table
-The route table was updated with a default route (`0.0.0.0/0`) pointing to the Internet Gateway.
+📸 screenshots/subnet.PNG
 
-![Route Table with IGW](screenshots/Route-table-with-route.PNG)
+🌐 Step 3: Attach Internet Gateway (Temporary)
 
----
+Internet Gateway attached only for initial setup
 
-## 💻 Step 5: Launch EC2 Instance
-An EC2 instance was launched inside the private subnet.
+Required to install packages (NGINX)
 
-- Instance Type: t2.small  
-- OS: Ubuntu  
-- Auto-assign Public IP: Enabled (temporary)
+📸 screenshots/IGW.PNG
 
-![EC2 Instance](screenshots/ec2-instance.PNG)
+🛣️ Step 4: Configure Route Table
+
+Added default route:
+
+0.0.0.0/0 → Internet Gateway
 
 
----
+Enabled outbound internet access temporarily
 
-## 🔧 Step 6: Install NGINX Web Server
-NGINX was installed on the EC2 instance and verified.
+📸 screenshots/Route-table-with-route.PNG
 
-```bash
+💻 Step 5: Launch EC2 Instance
+
+Instance Type: t2.small
+
+OS: Ubuntu
+
+Subnet: Private
+
+Auto-assign Public IP: Enabled (temporary)
+
+📸 screenshots/ec2-instance.PNG
+
+🔧 Step 6: Install NGINX Web Server
+
+Connected to EC2 and installed NGINX:
+
 sudo apt update
+sudo apt install nginx -y
 
-## 🌍 Step 7: Verify Website Using Public IP (Initial Phase)
-After installing NGINX, the website was accessed using the EC2 public IP to verify that the web server was working correctly.
+🌍 Step 7: Verify Website Using Public IP
 
-- URL: http://<Public-IP>
-- Status: Website accessible
+Accessed NGINX using public IP
 
-![Website Working via Public IP](screenshots/publicip-http-via-wesite-working.PNG)
+Confirmed web server is running
 
----
+http://<Public-IP>
 
-## 📝 Step 8: Upload Custom HTML Page
-The default NGINX page was replaced with a custom BMW Car Showroom static HTML page.
 
-```bash
+📸 screenshots/publicip-http-via-wesite-working.PNG
+
+📝 Step 8: Upload Custom HTML Page
+
+Replaced default NGINX page with a BMW Car Showroom static website.
+
 cd /var/www/html
 sudo nano index.html
 
-## 🚫 Step 8.1: Verify HTTP Access After Public IP Removal
-After removing the public IP, the website was no longer accessible over HTTP from the internet.
+🚫 Step 9: Disable Public Internet Access
+9.1 Disable Auto-Assign Public IP
 
-- URL: http://<Public-IP>
-- Status: Not reachable
-- Reason: Public IP removed
+Prevents public IP assignment during restart
 
-![HTTP Access Blocked](screenshots/ec2-not-in-public.PNG)
+📸 screenshots/stop-auto-assign-public-ip.PNG
 
----
+9.2 Remove Existing Public IP
 
-## 🔒 Step 9: Disable Auto-Assign Public IP
-Auto-assign public IP was disabled to prevent public IP assignment during instance restart.
+Manually unassigned public IPv4 address
 
-![Stop Auto Assign Public IP](screenshots/stop-auto-assign-public-ip.PNG)
+📸
 
----
+screenshots/remove-public-ip-from-ec2.PNG
 
-## ❌ Step 10: Remove Public IP from EC2
-The public IPv4 address was manually unassigned from the EC2 instance to enhance security.
+screenshots/publi-ip-disabled.PNG
 
-![Remove Public IP](screenshots/remove-public-ip-from-ec2.PNG)
+Result
 
-![Public IP Disabled](screenshots/publi-ip-disabled.PNG)
+Website no longer accessible from the internet
 
----
+Public exposure fully eliminated
 
-## 🔐 Step 11: Create VPC Endpoint (EC2 Instance Connect)
-An EC2 Instance Connect VPC Endpoint was created to allow secure private access to the EC2 instance.
+📸 screenshots/ec2-not-in-public.PNG
 
-![VPC Endpoint Created](screenshots/vpc-endpoint-created.PNG)
+🔐 Step 10: Create VPC Endpoint (EC2 Instance Connect)
 
-![VPC Endpoint Details](screenshots/vpc-endpoint.PNG)
+Created EC2 Instance Connect Endpoint
 
----
+Allows secure private access without public IP
 
-## 🔑 Step 12: Connect to EC2 Using Private IP
-The EC2 instance was accessed securely using its private IP through the VPC Endpoint.
+📸
 
-![EC2 Connect via Endpoint](screenshots/ec2-connect-via-endpoint.PNG)
+screenshots/vpc-endpoint-created.PNG
 
+screenshots/vpc-endpoint.PNG
 
-sudo apt install nginx -y
+🔑 Step 11: Connect to EC2 Using Private IP
 
+Connected securely via EC2 Instance Connect
+
+No SSH, no public IP, no internet exposure
+
+📸 screenshots/ec2-connect-via-endpoint.PNG
