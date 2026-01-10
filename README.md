@@ -58,16 +58,16 @@ NGINX was installed on the EC2 instance and verified.
 
 sudo apt update
 
-7.1 Navigate to NGINX Web Directory
+6.1 Navigate to NGINX Web Directory
 cd /var/www/html
 
-7.2 Backup Default NGINX Page (Optional)
+6.2 Backup Default NGINX Page (Optional)
 sudo mv index.nginx-debian.html index.nginx-debian.html.bak
 
-7.3 Create a New index.html File
+6.3 Create a New index.html File
 sudo nano index.html
 
-7.4 Upload Custom HTML Code
+6.4 Upload Custom HTML Code
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,8 +107,11 @@ sudo nano index.html
 
 Save and exit the editor (Ctrl + O, Enter, Ctrl + X).
 
-7.5 Restart NGINX
+6.5 Restart NGINX
 sudo systemctl restart nginx
+
+![Insert HTML Code](screenshots/insert-html-code.PNG)
+
 
 
 ## 🌍 Step 7: Verify Website Using Public IP (Initial Phase)
