@@ -1,8 +1,6 @@
 # Secure-Ec2-Web-Hosting-Vpc-Endpoint
 Deployed an NGINX web server on EC2, initially configured with a public IP and later secured by removing public access and enabling private connectivity using a VPC Endpoint.
 
-# Secure EC2 Web Hosting Using VPC Endpoint
-
 ## 📌 Project Overview
 This project demonstrates how to securely host a web application on an Amazon EC2 instance by initially using a public IP for setup and later removing the public IP to ensure private access using a VPC Endpoint.
 
