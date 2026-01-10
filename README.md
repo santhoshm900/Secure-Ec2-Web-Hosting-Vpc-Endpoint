@@ -52,22 +52,32 @@ An EC2 instance was launched inside the private subnet.
 
 ---
 
-## 🔧 Step 6: Install NGINX Web Server
-NGINX was installed on the EC2 instance and verified.
+## 🔧 STEP 6: INSTALL NGINX & DEPLOY CUSTOM HTML PAGE
+---
 
+This step covers installing **NGINX**, deploying a **custom HTML page**, and preparing the web server for verification.
 
+---
+
+### 🛠️ 6.1 Install NGINX
+```bash
 sudo apt update
-
-6.1 Navigate to NGINX Web Directory
+sudo apt install nginx -y
+📂 6.2 Navigate to NGINX Web Directory
+bash
+Copy code
 cd /var/www/html
-
-6.2 Backup Default NGINX Page (Optional)
+🗂️ 6.3 Backup Default NGINX Page (Optional – Best Practice)
+bash
+Copy code
 sudo mv index.nginx-debian.html index.nginx-debian.html.bak
-
-6.3 Create a New index.html File
+📝 6.4 Create a New index.html File
+bash
+Copy code
 sudo nano index.html
-
-6.4 Upload Custom HTML Code
+🎨 6.5 Upload Custom HTML Code (BMW Showroom)
+html
+Copy code
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,35 +89,36 @@ sudo nano index.html
             font-family: Arial, Helvetica, sans-serif;
             background-color: #0b0b0b;
             color: #ffffff;
+            text-align: center;
         }
 
         header {
             background-color: #000000;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid #1c69d4;
+            padding: 25px;
+            border-bottom: 4px solid #1c69d4;
         }
 
         header h1 {
             margin: 0;
             color: #1c69d4;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>BMW Car Showroom</h1>
+    <h1>BMW CAR SHOWROOM</h1>
 </header>
 
 </body>
 </html>
+Save and exit the editor:
+Ctrl + O → Enter → Ctrl + X
 
-
-Save and exit the editor (Ctrl + O, Enter, Ctrl + X).
-
-6.5 Restart NGINX
+🔄 6.6 Restart NGINX Service
+bash
+Copy code
 sudo systemctl restart nginx
 
 ![Insert HTML Code](screenshots/insert-html-code.PNG)
