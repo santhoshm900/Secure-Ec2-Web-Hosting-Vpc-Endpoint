@@ -58,6 +58,59 @@ NGINX was installed on the EC2 instance and verified.
 
 sudo apt update
 
+7.1 Navigate to NGINX Web Directory
+cd /var/www/html
+
+7.2 Backup Default NGINX Page (Optional)
+sudo mv index.nginx-debian.html index.nginx-debian.html.bak
+
+7.3 Create a New index.html File
+sudo nano index.html
+
+7.4 Upload Custom HTML Code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMW Car Showroom</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0b0b0b;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #1c69d4;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #1c69d4;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>BMW Car Showroom</h1>
+</header>
+
+</body>
+</html>
+
+
+Save and exit the editor (Ctrl + O, Enter, Ctrl + X).
+
+7.5 Restart NGINX
+sudo systemctl restart nginx
+
+
 ## 🌍 Step 7: Verify Website Using Public IP (Initial Phase)
 After installing NGINX, the website was accessed using the EC2 public IP to verify that the web server was working correctly.
 
