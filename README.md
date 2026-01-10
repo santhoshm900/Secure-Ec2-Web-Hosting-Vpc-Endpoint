@@ -60,24 +60,21 @@ This step covers installing **NGINX**, deploying a **custom HTML page**, and pre
 ---
 
 ### 🛠️ 6.1 Install NGINX
-```bash
+
 sudo apt update
 sudo apt install nginx -y
 📂 6.2 Navigate to NGINX Web Directory
-bash
-Copy code
+
 cd /var/www/html
 🗂️ 6.3 Backup Default NGINX Page (Optional – Best Practice)
-bash
-Copy code
+
 sudo mv index.nginx-debian.html index.nginx-debian.html.bak
 📝 6.4 Create a New index.html File
-bash
-Copy code
+
 sudo nano index.html
 🎨 6.5 Upload Custom HTML Code (BMW Showroom)
-html
-Copy code
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,8 +114,7 @@ Save and exit the editor:
 Ctrl + O → Enter → Ctrl + X
 
 🔄 6.6 Restart NGINX Service
-bash
-Copy code
+
 sudo systemctl restart nginx
 
 ![Insert HTML Code](screenshots/insert-html-code.PNG)
